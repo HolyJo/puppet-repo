@@ -4,7 +4,7 @@ class repo::config {
         source => "puppet:///modules/repo/rpm-gpg/RPM-GPG-KEY-EPEL",
         owner => "root",
         group => "root",
-        before => File['/etc/yum.repos.d/epel.repo'],
+        before => Yumrepo['epel'],
     }
 
     file { '/etc/pki/rpm-gpg/RPM-GPG-KEY-WANdisco':
