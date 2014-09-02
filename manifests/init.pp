@@ -23,11 +23,13 @@ class repo::config {
         before => Yumrepo['remi']
     }
 
-    file { '/etc/yum.repos.d/epel.repo':
-        ensure => present,
-        source => "puppet:///modules/repo/epel.repo",
-        owner => "root",
-        group => "root",
+    yumrepo { "epel":
+        baseurl => "http://download.fedoraproject.org/pub/epel/6/$architecture",
+        descr => "EPEL repository",
+        enabled => 1,
+        gpgcheck => 1,
+        gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL",
+        notify => Service['network']
     }
 
     yumrepo { "remi":
