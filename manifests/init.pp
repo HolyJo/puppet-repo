@@ -1,7 +1,7 @@
 class repo::config {
-    file { '/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL':
+    file { '/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6':
         ensure => present,
-        source => "puppet:///modules/repo/rpm-gpg/RPM-GPG-KEY-EPEL",
+        source => "puppet:///modules/repo/rpm-gpg/RPM-GPG-KEY-EPEL-6",
         owner => "root",
         group => "root",
         before => File['/etc/yum.repos.d/epel.repo'],
