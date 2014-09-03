@@ -23,16 +23,6 @@ class repo::config {
         before => Yumrepo['remi']
     }
 
-
-    file { '/etc/pki/rpm-gpg/RPM-GPG-KEY-jenkins':
-        ensure => present,
-        source => "puppet:///modules/repo/rpm-gpg/RPM-GPG-KEY-jenkins",
-        owner => "root",
-        group => "root",
-        before => Yumrepo['jenkins']
-    }
-
-
     yumrepo { "epel":
         baseurl => "http://download.fedoraproject.org/pub/epel/6/$architecture",
         descr => "EPEL repository",
@@ -40,15 +30,6 @@ class repo::config {
         gpgcheck => 1,
         gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL",
         notify => Service['network']
-    }
-
-    yumrepo { "jenkins":
-        baseurl => "http://pkg.jenkins-ci.org/redhat",
-        descr => "RedHat Linux RPM packages for Jenkins",
-        enabled => 1,
-        gpgcheck => 1,
-        gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-jenkins",
-        before => Yumrepo['remi-php55'],
     }
 
     yumrepo { "remi":
