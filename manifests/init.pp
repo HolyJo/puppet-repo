@@ -76,6 +76,15 @@ class repo::config {
         notify => Service['network']
     }
 
+    yumrepo { "jenkins":
+        baseurl => "http://pkg.jenkins-ci.org/redhat/",
+        descr => "Jenkins Repo",
+        enabled => 1,
+        gpgcheck => 1,
+        gpgkey => "http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key",
+        notify => Service['network']
+    }
+
     file { '/etc/yum.repos.d/wandisco.repo':
         ensure => present,
         source => "puppet:///modules/repo/wandisco.repo",
