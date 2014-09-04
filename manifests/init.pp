@@ -23,6 +23,22 @@ class repo::config {
         before => Yumrepo['remi']
     }
 
+    file { '/etc/pki/rpm-gpg/RPM-GPG-KEY.art.txt':
+        ensure => present,
+        source => "puppet:///modules/repo/rpm-gpg/RPM-GPG-KEY.art.txt",
+        owner => "root",
+        group => "root",
+        before => Yumrepo['atomicorp']
+    }
+
+    file { '/etc/pki/rpm-gpg/RPM-GPG-KEY.atomicorp.txt':
+        ensure => present,
+        source => "puppet:///modules/repo/rpm-gpg/RPM-GPG-KEY.atomicorp.txt",
+        owner => "root",
+        group => "root",
+        before => Yumrepo['atomicorp']
+    }
+
     yumrepo { "epel":
         baseurl => "http://download.fedoraproject.org/pub/epel/6/$architecture",
         descr => "EPEL repository",
@@ -48,6 +64,15 @@ class repo::config {
         enabled => 1,
         gpgcheck => 1,
         gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi",
+        notify => Service['network']
+    }
+
+    yumrepo { "atomicorp":
+        baseurl => "http://www6.atomicorp.com/channels/atomic/centos/6/$architecture/RPMS",
+        descr => "Atomicorp for rvm",
+        enabled => 1,
+        gpgcheck => 1,
+        gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY.atomicorp.txt",
         notify => Service['network']
     }
 
