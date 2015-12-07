@@ -23,6 +23,14 @@ class repo::config {
         before => Yumrepo['remi']
     }
 
+    file { '/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql':
+        ensure => present,
+        source => "puppet:///modules/repo/rpm-gpg/RPM-GPG-KEY-mysql",
+        owner => "root",
+        group => "root",
+        before => Yumrepo['mysql-community']
+    }
+
     yumrepo { "epel":
         baseurl => "http://download.fedoraproject.org/pub/epel/6/$architecture",
         descr => "EPEL repository",
@@ -49,6 +57,15 @@ class repo::config {
         gpgcheck => 1,
         gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi",
         notify => Service['network']
+    }
+
+    yumrepo { "mysql-community":
+        baseurl => "http://repo.mysql.com/yum/mysql-5.7-community/el/6/$architecture",
+        descr => "MySQL 5.7 Community Server",
+        enabled => 1,
+        gpgcheck => 1,
+        gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql",
+        notify => Service['mysqld']
     }
 
     file { '/etc/yum.repos.d/wandisco.repo':
