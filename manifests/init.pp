@@ -56,7 +56,8 @@ class repo::config {
         enabled => 1,
         gpgcheck => 1,
         gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi",
-        notify => Service['network']
+        notify => Service['network'],
+        before => Yumrepo['mysql-community']
     }
 
     yumrepo { "mysql-community":
