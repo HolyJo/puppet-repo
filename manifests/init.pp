@@ -67,7 +67,7 @@ class repo::config {
         gpgcheck => 1,
         gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql",
         notify => Service['mysqld'],
-        before => Package['mysql-server']
+        before => Package['mysql-community-server']
     }
 
     file { '/etc/yum.repos.d/wandisco.repo':
