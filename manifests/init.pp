@@ -47,7 +47,7 @@ class repo::config {
         gpgcheck => 1,
         gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi",
         notify => Service['network'],
-        before => Yumrepo['remi-php55']
+        before => Yumrepo['remi-php56']
     }
 
     yumrepo { "remi-php56":
@@ -93,7 +93,7 @@ class repo::config {
         command => "/usr/bin/yum -d 0 -e 0 -y clean metadata",
         refreshonly => true,
         require => [
-            Yumrepo['remi-php55'],
+            Yumrepo['remi-php56'],
             Service['network']
         ]
     }
@@ -101,12 +101,12 @@ class repo::config {
 #    exec {"yum_update":
 #      command => "/usr/bin/yum update -y --skip-broken",
 #      require => [
-#        Yumrepo['remi-php55'],
+#        Yumrepo['remi-php56'],
 #        Service['network']
 #      ]
 #    }
 
-    Yumrepo['remi-php55'] -> Exec['clean_yum_metadata']
+    Yumrepo['remi-php56'] -> Exec['clean_yum_metadata']
 
 }
 
