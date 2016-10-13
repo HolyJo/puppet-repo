@@ -50,9 +50,9 @@ class repo::config {
         before => Yumrepo['remi-php55']
     }
 
-    yumrepo { "remi-php55":
-        baseurl => "http://rpms.famillecollet.com/enterprise/6/php55/$architecture",
-        descr => "Remi php55 repository",
+    yumrepo { "remi-php56":
+        baseurl => "http://rpms.famillecollet.com/enterprise/6/php56/$architecture",
+        descr => "Remi php56 repository",
         enabled => 1,
         gpgcheck => 1,
         gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi",
