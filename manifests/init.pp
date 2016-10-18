@@ -98,13 +98,13 @@ class repo::config {
         ]
     }
 
-    exec {"yum_update":
-      command => "/usr/bin/yum update -y --skip-broken",
-      require => [
-        Yumrepo['remi-php56'],
-        Service['network']
-      ]
-    }
+    #exec {"yum_update":
+    #  command => "/usr/bin/yum update -y --skip-broken",
+    #  require => [
+    #    Yumrepo['remi-php56'],
+    #    Service['network']
+    #  ]
+    #}
 
     Yumrepo['remi-php56'] -> Exec['clean_yum_metadata']
 
