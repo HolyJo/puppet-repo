@@ -47,12 +47,12 @@ class repo::config {
         gpgcheck => 1,
         gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi",
         notify => Service['network'],
-        before => Yumrepo['remi-php56']
+        before => Yumrepo['remi-php72']
     }
 
-    yumrepo { "remi-php56":
-        baseurl => "http://rpms.famillecollet.com/enterprise/6/php56/$architecture",
-        descr => "Remi php56 repository",
+    yumrepo { "remi-php72":
+        baseurl => "http://rpms.famillecollet.com/enterprise/6/php72/$architecture",
+        descr => "Remi php72 repository",
         enabled => 1,
         gpgcheck => 1,
         gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi",
@@ -93,7 +93,7 @@ class repo::config {
         command => "/usr/bin/yum -d 0 -e 0 -y clean metadata",
         refreshonly => true,
         require => [
-            Yumrepo['remi-php56'],
+            Yumrepo['remi-php72'],
             Service['network']
         ]
     }
@@ -101,12 +101,12 @@ class repo::config {
     #exec {"yum_update":
     #  command => "/usr/bin/yum update -y --skip-broken",
     #  require => [
-    #    Yumrepo['remi-php56'],
+    #    Yumrepo['remi-php72'],
     #    Service['network']
     #  ]
     #}
 
-    Yumrepo['remi-php56'] -> Exec['clean_yum_metadata']
+    Yumrepo['remi-php72'] -> Exec['clean_yum_metadata']
 
 }
 
