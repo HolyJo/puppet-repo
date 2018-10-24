@@ -40,25 +40,25 @@ class repo::config {
         notify => Service['network']
     }
 
-    yumrepo { "remi":
-        baseurl => "http://rpms.famillecollet.com/enterprise/6/remi/$architecture",
-        descr => "Remi repository",
-        enabled => 1,
-        gpgcheck => 1,
-        gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi",
-        notify => Service['network'],
-        before => Yumrepo['remi-php72']
-    }
+#    yumrepo { "remi":
+#        baseurl => "http://rpms.famillecollet.com/enterprise/6/remi/$architecture",
+#        descr => "Remi repository",
+#        enabled => 1,
+#        gpgcheck => 1,
+#        gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi",
+#        notify => Service['network'],
+#        before => Yumrepo['remi-php72']
+#    }
 
-    yumrepo { "remi-php72":
-        baseurl => "http://rpms.famillecollet.com/enterprise/6/php72/$architecture",
-        descr => "Remi php72 repository",
-        enabled => 1,
-        gpgcheck => 1,
-        gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi",
-        notify => Service['network'],
-        before => Yumrepo['mysql-community']
-    }
+#    yumrepo { "remi-php72":
+#        baseurl => "http://rpms.famillecollet.com/enterprise/6/php72/$architecture",
+#        descr => "Remi php72 repository",
+#        enabled => 1,
+#        gpgcheck => 1,
+#        gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi",
+#        notify => Service['network'],
+#        before => Yumrepo['mysql-community']
+#    }
 
     yumrepo { "mysql-community":
         baseurl => "http://repo.mysql.com/yum/mysql-5.7-community/el/6/$architecture",
