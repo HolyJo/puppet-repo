@@ -93,7 +93,6 @@ class repo::config {
         command => "/usr/bin/yum -d 0 -e 0 -y clean metadata",
         refreshonly => true,
         require => [
-            Yumrepo['remi-php72'],
             Service['network']
         ]
     }
@@ -106,7 +105,7 @@ class repo::config {
     #  ]
     #}
 
-    Yumrepo['remi-php72'] -> Exec['clean_yum_metadata']
+#    Yumrepo['remi-php72'] -> Exec['clean_yum_metadata']
 
 }
 
